@@ -1,18 +1,21 @@
 ---
 layout: page
-title: About
+title: 部について
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+HDCマイクラ部は、Minecraft を通じて部署をまたいで交流することを目的とした社内の同好会です。
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+## 活動内容
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+- 部内サーバーでの共同建築
+- 探検・攻略（ネザー、エンドなど）
+- 不定期のイベント（建築コンテストなど）
 
+## 参加について
 
-[jekyll-organization]: https://github.com/jekyll
+社員であればどなたでも参加できます。Minecraft の経験は問いません。
+参加を希望される方は部長までご連絡ください。
+
+このサイトは [Jekyll](https://jekyllrb.com/) で作られており、
+ソースは [GitHub](https://github.com/hdc-lyu/hdc-mine-club) で管理しています。

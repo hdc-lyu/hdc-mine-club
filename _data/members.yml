@@ -1,0 +1,24 @@
+# 部員一覧のデータ。ここに追記すると部員一覧ページに反映されます。
+# name:    表示名（本名でもMinecraftのIDでもOK）
+# mcid:    Minecraft のプレイヤーID
+# role:    部内での役割
+# joined:  入部日（YYYY-MM）
+# comment: ひとこと
+
+- name: 呂 超
+  mcid: lyu_hdc
+  role: 部長
+  joined: 2026-08
+  comment: サーバーの管理と、この活動記録サイトを担当しています。
+
+- name: サンプル 太郎
+  mcid: sample_taro
+  role: 建築班
+  joined: 2026-08
+  comment: 会社の社屋を再現するのが目標です。
+
+- name: サンプル 花子
+  mcid: sample_hanako
+  role: 探検班
+  joined: 2026-08
+  comment: ネザーとエンドの攻略担当。レッドストーンも勉強中です。

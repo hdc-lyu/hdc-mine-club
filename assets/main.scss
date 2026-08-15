@@ -1,0 +1,192 @@
+---
+# このファイルだけ front matter（この3本線）が必要です
+---
+
+@charset "utf-8";
+
+// ===== HDCマイクラ部 カラーパレット =====
+// 会社色（青）＋白ベース、マイクラ色（緑）をアクセントに使います。
+$hdc-blue:        #1a4f9c; // メインの青
+$hdc-blue-dark:   #133b76; // 濃い青（ヘッダーのグラデーションなど）
+$hdc-blue-pale:   #eef3fb; // 薄い青（カードの背景）
+$mc-green:        #5aa93a; // マイクラの草ブロックの緑
+$mc-green-dark:   #3f7c28; // 濃い緑
+
+// minima の変数を上書き
+$brand-color:      $hdc-blue;
+$text-color:       #1b2430;
+$background-color: #ffffff;
+$grey-color:       #6b7684;
+
+@import "minima";
+
+// ===== ヘッダー =====
+.site-header {
+  background: linear-gradient(180deg, $hdc-blue 0%, $hdc-blue-dark 100%);
+  border-top: none;
+  border-bottom: 4px solid $mc-green;
+}
+
+.site-title {
+  font-weight: 700;
+  letter-spacing: 0;
+
+  &,
+  &:visited,
+  &:hover {
+    color: #ffffff;
+    text-decoration: none;
+  }
+}
+
+.site-nav {
+  .page-link,
+  .page-link:visited {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .page-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .menu-icon > svg path {
+    fill: #ffffff;
+  }
+
+  // スマートフォンではメニューが白い箱で開くので文字色を戻す
+  @include media-query($on-palm) {
+    background-color: $background-color;
+    border-color: $mc-green;
+
+    .page-link,
+    .page-link:visited {
+      color: $text-color;
+    }
+
+    .page-link:hover {
+      color: $hdc-blue;
+    }
+
+    .menu-icon > svg path {
+      fill: $hdc-blue;
+    }
+  }
+}
+
+// ===== 見出し・リンク =====
+h1,
+h2,
+h3 {
+  color: $hdc-blue-dark;
+}
+
+.page-heading,
+.post-title {
+  border-bottom: 3px solid $mc-green;
+  padding-bottom: 8px;
+}
+
+a:hover {
+  color: $mc-green-dark;
+}
+
+// ===== 記事一覧（トップページ・活動一覧） =====
+.post-list > li {
+  background-color: $hdc-blue-pale;
+  border-left: 6px solid $mc-green;
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+
+  h2,
+  h3 {
+    margin-bottom: 4px;
+  }
+}
+
+.more-link a {
+  font-weight: 700;
+}
+
+.activity-tags {
+  margin-bottom: 8px;
+}
+
+.activity-tag {
+  display: inline-block;
+  background-color: $mc-green;
+  color: #ffffff;
+  border-radius: 3px;
+  padding: 1px 10px;
+  margin-right: 6px;
+  font-size: $small-font-size;
+}
+
+// ===== 部員一覧 =====
+.member-list {
+  list-style: none;
+  margin-left: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.member-card {
+  background-color: #ffffff;
+  border: 1px solid $grey-color-light;
+  border-top: 5px solid $hdc-blue;
+  border-radius: 4px;
+  padding: 16px 20px;
+}
+
+.member-name {
+  font-size: $base-font-size * 1.25;
+  margin-bottom: 8px;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.member-role {
+  display: inline-block;
+  vertical-align: middle;
+  background-color: $mc-green;
+  color: #ffffff;
+  border-radius: 3px;
+  padding: 1px 10px;
+  margin-left: 6px;
+  font-size: $small-font-size;
+  font-weight: 400;
+}
+
+.member-meta {
+  margin-bottom: 8px;
+  font-size: $small-font-size;
+  color: $grey-color-dark;
+
+  dt {
+    float: left;
+    clear: left;
+    width: 4.5em;
+    font-weight: 700;
+    color: $hdc-blue;
+  }
+
+  dd {
+    margin-left: 4.5em;
+  }
+}
+
+.member-comment {
+  margin-bottom: 0;
+  font-size: $small-font-size;
+}
+
+// ===== フッター =====
+.site-footer {
+  border-top: 4px solid $mc-green;
+}
+
+.footer-heading {
+  color: $hdc-blue-dark;
+}

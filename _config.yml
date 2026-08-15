@@ -1,46 +1,41 @@
-# Welcome to Jekyll!
+# HDCマイクラ部 サイト設定
 #
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
+# このファイルはサイト全体に関わる設定です。
+# 変更した場合は `bundle exec jekyll serve` を再起動してください。
 
-title: Your awesome title
-email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "/hdc-mine-club" # the subpath of your site, e.g. /blog
-url: "https://hdc-lyu.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+# サイト設定
+title: HDCマイクラ部
+# email を設定するとフッターに公開されます。サイトは一般公開のため空にしています。
+email:
+description: >- # baseurl: までの改行は無視されます
+  HDCマイクラ部の活動記録サイトです。
+  サーバーでの建築、イベント、部員の紹介などを記録していきます。
+baseurl: "/hdc-mine-club" # サイトのサブパス（例: /blog）
+url: "https://hdc-lyu.github.io" # ホスト名とプロトコル
 
-# Build settings
+# 活動記録のURL（カテゴリ名がURLに入らないようにしています）
+permalink: /activities/:year/:month/:day/:title/
+
+# ヘッダーに表示するページと順番
+header_pages:
+  - members.markdown
+  - activities.markdown
+  - about.markdown
+
+# minima テーマの表示設定
+minima:
+  date_format: "%Y年%-m月%-d日"
+
+show_excerpts: true
+
+# ビルド設定
 theme: minima
 plugins:
   - jekyll-feed
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
+# 処理対象から除外する項目
+# 下記の項目は既定で処理されません。
+# ここで `exclude:` に列挙した項目は内部の除外リストに追加されます。
 #
 # exclude:
 #   - .sass-cache/
