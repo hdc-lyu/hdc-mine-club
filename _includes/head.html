@@ -8,15 +8,6 @@
   <meta name="robots" content="noindex, nofollow">
   {%- endif -%}
 
-  {%- comment -%}
-    マイクラ風のドットフォント。マイクラ本体のフォントは日本語グリフを持たないため、
-    日本語に対応したドットフォント DotGothic16（SIL Open Font License）を使っています。
-    日本語部分は文字コード範囲ごとに分割配信されるため、必要な分だけ読み込まれます。
-  {%- endcomment -%}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap">
-
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   {%- feed_meta -%}
   {%- if jekyll.environment == 'production' and site.google_analytics -%}

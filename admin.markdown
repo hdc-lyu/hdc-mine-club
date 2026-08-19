@@ -89,6 +89,11 @@ git push origin main
 フォントサイズはドットフォントが綺麗に出るよう8の倍数で揃えています。
 変更するときも8の倍数（16 / 24 / 32 / 40）に揃えてください。
 
+ドットフォント DotGothic16 は外部CDNを使わず `assets/fonts/` に同梱しています。
+社内など外部通信が制限された環境でも同じ見た目で表示されます。
+ライセンスは SIL Open Font License 1.1（`assets/fonts/dotgothic16/OFL.txt`）で、
+再配布にあたりライセンス全文を同梱する必要があるため削除しないでください。
+
 サイト全体をドットフォントにしたい場合は `assets/main.scss` に次を追加します。
 
 ```scss
@@ -103,6 +108,8 @@ body { font-family: $mc-font; }
 | `_data/members.yml` | 部員一覧のデータ |
 | `_posts/` | 活動記録 |
 | `_layouts/home.html` | トップページ（最近の活動3件を表示） |
-| `_includes/head.html` | フォント読み込み・検索避けの設定 |
+| `_includes/head.html` | 検索避けなどのhead設定 |
+| `_sass/dotgothic16.scss` | 同梱フォントの定義（自動生成・手編集不可） |
+| `assets/fonts/` | 同梱フォント本体とライセンス |
 | `assets/main.scss` | 配色・フォント・レイアウト |
 | `.github/workflows/jekyll.yml` | 公開の自動化 |

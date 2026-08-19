@@ -55,6 +55,9 @@ $content-width:    880px;
 
 @import "minima";
 
+// リポジトリに同梱したドットフォントの定義（_sass/dotgothic16.scss）
+@import "dotgothic16";
+
 // ===== ベース（Apple風のタイポグラフィと余白） =====
 body {
   -webkit-font-smoothing: antialiased;
