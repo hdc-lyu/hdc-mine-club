@@ -5,59 +5,143 @@
 @charset "utf-8";
 
 // ===== HDCマイクラ部 カラーパレット =====
-// 会社色（青）＋白ベース、マイクラ色（緑）をアクセントに使います。
-$hdc-blue:        #1a4f9c; // メインの青
-$hdc-blue-dark:   #133b76; // 濃い青（ヘッダーのグラデーションなど）
-$hdc-blue-pale:   #eef3fb; // 薄い青（カードの背景）
-$mc-green:        #5aa93a; // マイクラの草ブロックの緑
+// ベースはApple風の白＋グレー、会社色の青をアクセントに、
+// マイクラ要素（ボタン・木の看板）に石グレーと木の茶色を使います。
+$hdc-blue:        #1a4f9c; // 会社色の青
+$hdc-blue-dark:   #133b76; // 濃い青
+$hdc-blue-pale:   #eef3fb; // 薄い青
+$mc-green:        #5aa93a; // マイクラの草の緑
+$mc-green-light:  #6bbd46; // 明るい草の緑
 $mc-green-dark:   #3f7c28; // 濃い緑
+
+// マイクラGUIボタン（石ブロック）
+$mc-stone:        #9a9a9a;
+$mc-stone-dark:   #6e6e6e;
+$mc-stone-edge:   #2b2b2b;
+
+// 木の看板（オークの板）
+$mc-wood:         #c69a63;
+$mc-wood-dark:    #a87c46;
+$mc-wood-edge:    #6b4a24;
+$mc-wood-text:    #2e1c0c;
+$mc-wood-meta:    #47301a; // 木の背景でコントラスト比4.8:1を確保
 
 // minima の変数を上書き
 $brand-color:      $hdc-blue;
-$text-color:       #1b2430;
-$background-color: #ffffff;
-$grey-color:       #6b7684;
+$text-color:       #1d1d1f;   // Apple風のほぼ黒
+$background-color: #fbfbfd;   // Apple風のごく薄いグレー
+$grey-color:       #6e6e73;
+$base-font-size:   17px;
+$base-line-height: 1.6;
+$spacing-unit:     32px;
+$content-width:    880px;
 
 @import "minima";
 
-// ===== ヘッダー =====
+// ===== ベース（Apple風のタイポグラフィと余白） =====
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.004em;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: $text-color;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-top: $spacing-unit * 1.5;
+}
+
+a {
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+a:hover {
+  color: $hdc-blue-dark;
+  text-decoration: none;
+  opacity: 0.75;
+}
+
+.page-content {
+  padding: $spacing-unit * 1.75 0 $spacing-unit * 2;
+}
+
+// ===== ヘッダー（Apple風の半透明バー＋草ブロックの縁） =====
 .site-header {
-  background: linear-gradient(180deg, $hdc-blue 0%, $hdc-blue-dark 100%);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(26, 79, 156, 0.82);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
   border-top: none;
-  border-bottom: 4px solid $mc-green;
+  border-bottom: none;
+
+  // 下辺をマイクラの草ブロックのようなドット模様にしています
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    height: 5px;
+    background: repeating-linear-gradient(
+      90deg,
+      $mc-green 0 8px,
+      $mc-green-light 8px 16px
+    );
+  }
 }
 
 .site-title {
-  font-weight: 700;
-  letter-spacing: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 
   &,
   &:visited,
   &:hover {
     color: #ffffff;
     text-decoration: none;
+    opacity: 1;
   }
 }
 
 .site-nav {
   .page-link,
   .page-link:visited {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 15px;
   }
 
   .page-link:hover {
     color: #ffffff;
-    text-decoration: underline;
+    opacity: 1;
+    text-decoration: none;
   }
 
   .menu-icon > svg path {
     fill: #ffffff;
   }
 
-  // スマートフォンではメニューが白い箱で開くので文字色を戻す
+  // スマートフォンではメニューが白い箱で開くので文字色を戻します
   @include media-query($on-palm) {
-    background-color: $background-color;
+    background-color: rgba(255, 255, 255, 0.92);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     border-color: $mc-green;
+    border-radius: 12px;
 
     .page-link,
     .page-link:visited {
@@ -74,102 +158,283 @@ $grey-color:       #6b7684;
   }
 }
 
-// ===== 見出し・リンク =====
-h1,
-h2,
-h3 {
-  color: $hdc-blue-dark;
-}
-
+// ===== 見出し =====
 .page-heading,
-.post-title {
-  border-bottom: 3px solid $mc-green;
-  padding-bottom: 8px;
-}
-
-a:hover {
-  color: $mc-green-dark;
-}
-
-// ===== 記事一覧（トップページ・活動一覧） =====
-.post-list > li {
-  background-color: $hdc-blue-pale;
-  border-left: 6px solid $mc-green;
-  border-radius: 4px;
-  padding: 16px 20px;
-  margin-bottom: 20px;
-
-  h2,
-  h3 {
-    margin-bottom: 4px;
-  }
-}
-
-.more-link a {
-  font-weight: 700;
-}
-
-.activity-tags {
-  margin-bottom: 8px;
-}
-
-.activity-tag {
-  display: inline-block;
-  background-color: $mc-green;
-  color: #ffffff;
-  border-radius: 3px;
-  padding: 1px 10px;
-  margin-right: 6px;
-  font-size: $small-font-size;
-}
-
-// ===== 部員一覧 =====
-.member-list {
-  list-style: none;
-  margin-left: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-.member-card {
-  background-color: #ffffff;
-  border: 1px solid $grey-color-light;
-  border-top: 5px solid $hdc-blue;
-  border-radius: 4px;
-  padding: 16px 20px;
-}
-
-.member-name {
-  font-size: $base-font-size * 1.25;
-  margin-bottom: 8px;
+.post-title,
+.post-list-heading {
   border-bottom: none;
   padding-bottom: 0;
 }
 
-.member-role {
+.page-heading,
+.post-title {
+  font-size: 44px;
+  letter-spacing: -0.03em;
+  margin-bottom: $spacing-unit * 0.75;
+}
+
+// トップページの導入文はApple風に大きめの本文で
+.hero {
+  margin-bottom: $spacing-unit * 1.5;
+
+  p {
+    font-size: 21px;
+    line-height: 1.5;
+    color: #3a3a3c;
+    max-width: 34em;
+  }
+}
+
+// ===== マイクラ風ボタン =====
+// ゲーム内GUIのボタンに寄せて、角を立てて上下に立体的な縁を付けています。
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: $spacing-unit;
+}
+
+.mc-button {
   display: inline-block;
-  vertical-align: middle;
-  background-color: $mc-green;
+  padding: 13px 30px;
+  border: 2px solid $mc-stone-edge;
+  border-radius: 2px;
+  background-image: linear-gradient(
+    180deg,
+    lighten($mc-stone, 6%) 0%,
+    $mc-stone 48%,
+    $mc-stone-dark 100%
+  );
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.45),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.32),
+    0 4px 0 #3f3f3f;
   color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45);
+  text-decoration: none;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.15s ease;
+
+  &,
+  &:visited {
+    color: #ffffff;
+  }
+
+  // ゲーム内と同じく、カーソルを乗せると明るくなります
+  &:hover {
+    color: #ffffff;
+    opacity: 1;
+    text-decoration: none;
+    filter: brightness(1.12);
+  }
+
+  // 押し込まれる感じ
+  &:active {
+    transform: translateY(4px);
+    box-shadow:
+      inset 2px 2px 0 rgba(255, 255, 255, 0.35),
+      inset -2px -2px 0 rgba(0, 0, 0, 0.32),
+      0 0 0 #3f3f3f;
+  }
+}
+
+// 草ブロック色の主ボタン
+.mc-button--primary {
+  background-image: linear-gradient(
+    180deg,
+    $mc-green-light 0%,
+    $mc-green 48%,
+    $mc-green-dark 100%
+  );
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.4),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+    0 4px 0 #2f5d1e;
+
+  &:active {
+    box-shadow:
+      inset 2px 2px 0 rgba(255, 255, 255, 0.3),
+      inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+      0 0 0 #2f5d1e;
+  }
+}
+
+// ===== 活動一覧＝木の看板 =====
+.post-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.post-list > li {
+  position: relative;
+  margin-bottom: $spacing-unit * 1.5;
+  padding: 26px 30px 28px;
+  border: 3px solid $mc-wood-edge;
   border-radius: 3px;
-  padding: 1px 10px;
-  margin-left: 6px;
-  font-size: $small-font-size;
-  font-weight: 400;
+  background-color: $mc-wood;
+  // 板の継ぎ目（横）と不規則な木目（縦）を重ねて板材の質感を出しています
+  background-image:
+    repeating-linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.20) 0 2px,
+      rgba(255, 255, 255, 0.10) 2px 4px,
+      rgba(0, 0, 0, 0) 4px 52px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.05) 0 4px,
+      rgba(0, 0, 0, 0) 4px 11%,
+      rgba(0, 0, 0, 0.045) 11% 12.2%,
+      rgba(0, 0, 0, 0) 12.2% 27%,
+      rgba(255, 255, 255, 0.06) 27% 28%,
+      rgba(0, 0, 0, 0) 28% 45%,
+      rgba(0, 0, 0, 0.05) 45% 46.4%,
+      rgba(0, 0, 0, 0) 46.4% 62%,
+      rgba(0, 0, 0, 0.04) 62% 63%,
+      rgba(0, 0, 0, 0) 63% 79%,
+      rgba(255, 255, 255, 0.05) 79% 80.2%,
+      rgba(0, 0, 0, 0) 80.2% 93%,
+      rgba(0, 0, 0, 0.045) 93% 94%,
+      rgba(0, 0, 0, 0) 94% 100%
+    ),
+    linear-gradient(180deg, lighten($mc-wood, 5%) 0%, $mc-wood-dark 100%);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.14),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.16),
+    0 10px 24px rgba(0, 0, 0, 0.1);
+  color: $mc-wood-text;
+
+  // 看板の支柱
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -16px;
+    width: 28px;
+    height: 16px;
+    margin-left: -14px;
+    background-color: $mc-wood-edge;
+    box-shadow: inset 2px 0 0 rgba(255, 255, 255, 0.12);
+  }
+
+  h2,
+  h3 {
+    margin: 2px 0 6px;
+    font-size: 24px;
+    color: $mc-wood-text;
+  }
+
+  p {
+    color: darken($mc-wood-text, 2%);
+    margin-bottom: 0;
+  }
+
+  .post-meta {
+    color: $mc-wood-meta;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .post-link {
+    color: $mc-wood-text;
+
+    &:hover {
+      color: #000000;
+      opacity: 1;
+      text-decoration: underline;
+    }
+  }
+}
+
+// 看板に打ち付けた札のようなタグ
+.activity-tags {
+  margin: 0 0 10px;
+}
+
+.activity-tag {
+  display: inline-block;
+  padding: 2px 12px;
+  margin-right: 8px;
+  border: 2px solid $mc-green-dark;
+  border-radius: 2px;
+  background-color: $mc-green;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+// ===== 部員一覧＝Apple風カード =====
+.member-list {
+  list-style: none;
+  margin-left: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.member-card {
+  padding: 26px 28px;
+  border: none;
+  border-radius: 18px;
+  background-color: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.05),
+      0 16px 36px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.member-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-size: 22px;
+
+  // 名前の前に草ブロックのアイコンを置いています
+  &::before {
+    content: "";
+    flex: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 2px;
+    background-image: linear-gradient(
+      180deg,
+      $mc-green-light 0 34%,
+      #8b5a2b 34% 100%
+    );
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.member-role {
+  border-radius: 20px;
+  padding: 2px 12px;
+  font-size: 13px;
 }
 
 .member-meta {
-  margin-bottom: 8px;
-  font-size: $small-font-size;
-  color: $grey-color-dark;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: $grey-color;
 
   dt {
     float: left;
     clear: left;
     width: 4.5em;
-    font-weight: 700;
-    color: $hdc-blue;
+    font-weight: 600;
+    color: $text-color;
   }
 
   dd {
@@ -179,14 +444,37 @@ a:hover {
 
 .member-comment {
   margin-bottom: 0;
-  font-size: $small-font-size;
+  font-size: 15px;
+  color: #3a3a3c;
+}
+
+// ===== コード・引用 =====
+pre,
+code {
+  border-radius: 10px;
+  border-color: #e3e3e6;
+  background-color: #f5f5f7;
+}
+
+// minima既定のコードブロック背景（薄紫）をApple風のグレーに揃えます
+.highlighter-rouge .highlight {
+  background-color: #f5f5f7;
+  border-radius: 10px;
+}
+
+blockquote {
+  border-left-color: $mc-green;
+  color: $grey-color;
+  font-style: normal;
 }
 
 // ===== フッター =====
 .site-footer {
-  border-top: 4px solid $mc-green;
+  border-top: 1px solid #e3e3e6;
+  background-color: #f5f5f7;
+  font-size: 14px;
 }
 
 .footer-heading {
-  color: $hdc-blue-dark;
+  font-size: 18px;
 }

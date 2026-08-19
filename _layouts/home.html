@@ -7,7 +7,9 @@ layout: default
     <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
 
-  {{ content }}
+  <div class="hero">
+    {{ content }}
+  </div>
 
   {%- if site.posts.size > 0 -%}
     <h2 class="post-list-heading">最近の活動</h2>
@@ -28,8 +30,8 @@ layout: default
       {%- endfor -%}
     </ul>
 
-    <p class="more-link">
-      <a href="{{ "/activities/" | relative_url }}">活動一覧をすべて見る →</a>
+    <p class="button-row">
+      <a class="mc-button mc-button--primary" href="{{ "/activities/" | relative_url }}">活動一覧をすべて見る</a>
     </p>
   {%- endif -%}
 
