@@ -30,5 +30,3 @@ permalink: /members/
   </li>
 {%- endfor -%}
 </ul>
-
-部員データは `_data/members.yml` で管理しています。

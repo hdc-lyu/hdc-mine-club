@@ -3,6 +3,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {%- seo -%}
+  {%- comment -%}front matter に noindex: true を書いたページを検索避けにします{%- endcomment -%}
+  {%- if page.noindex -%}
+  <meta name="robots" content="noindex, nofollow">
+  {%- endif -%}
 
   {%- comment -%}
     マイクラ風のドットフォント。マイクラ本体のフォントは日本語グリフを持たないため、

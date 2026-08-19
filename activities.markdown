@@ -26,5 +26,3 @@ permalink: /activities/
   </li>
 {%- endfor -%}
 </ul>
-
-新しい活動記録は `_posts/YYYY-MM-DD-タイトル.markdown` として追加してください。
