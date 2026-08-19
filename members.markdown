@@ -20,7 +20,7 @@ permalink: /members/
       <dd>{{ member.mcid }}</dd>
       {%- endif %}
       {%- if member.joined %}
-      <dt>入部</dt>
+      <dt>入社</dt>
       <dd>{{ member.joined }}</dd>
       {%- endif %}
     </dl>
