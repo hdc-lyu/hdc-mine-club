@@ -26,6 +26,12 @@ $mc-wood-edge:    #6b4a24;
 $mc-wood-text:    #2e1c0c;
 $mc-wood-meta:    #47301a; // 木の背景でコントラスト比4.8:1を確保
 
+// マイクラ風のドットフォント（_includes/head.html で読み込んでいます）
+// 本文は読みやすさを優先してシステムフォントのままにし、
+// 見出し・ボタン・看板・ヘッダーなどに使っています。
+// サイト全体に適用したい場合は body { font-family: $mc-font; } を追加してください。
+$mc-font: "DotGothic16", "Courier New", monospace;
+
 // minima の変数を上書き
 $brand-color:      $hdc-blue;
 $text-color:       #1d1d1f;   // Apple風のほぼ黒
@@ -50,9 +56,11 @@ h2,
 h3,
 h4 {
   color: $text-color;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  // ドットフォントは太字を持たないので、擬似ボールドを避けて400のまま使います
+  font-family: $mc-font;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
 }
 
 h1 {
@@ -106,8 +114,9 @@ a:hover {
 }
 
 .site-title {
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: $mc-font;
+  font-weight: 400;
+  letter-spacing: 0.02em;
 
   &,
   &:visited,
@@ -122,6 +131,7 @@ a:hover {
   .page-link,
   .page-link:visited {
     color: rgba(255, 255, 255, 0.88);
+    font-family: $mc-font;
     font-size: 15px;
   }
 
@@ -168,8 +178,8 @@ a:hover {
 
 .page-heading,
 .post-title {
-  font-size: 44px;
-  letter-spacing: -0.03em;
+  font-size: 40px;
+  letter-spacing: 0.02em;
   margin-bottom: $spacing-unit * 0.75;
 }
 
@@ -210,9 +220,10 @@ a:hover {
     inset -2px -2px 0 rgba(0, 0, 0, 0.32),
     0 4px 0 #3f3f3f;
   color: #ffffff;
-  font-weight: 600;
+  font-family: $mc-font;
+  font-weight: 400;
   font-size: 16px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.06em;
   text-align: center;
   text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45);
   text-decoration: none;
@@ -306,6 +317,9 @@ a:hover {
     inset 0 -3px 0 rgba(0, 0, 0, 0.16),
     0 10px 24px rgba(0, 0, 0, 0.1);
   color: $mc-wood-text;
+  // 看板の文字はゲーム内と同じくドットフォントで
+  font-family: $mc-font;
+  line-height: 1.5;
 
   // 看板の支柱
   &::after {
@@ -334,8 +348,8 @@ a:hover {
 
   .post-meta {
     color: $mc-wood-meta;
-    font-weight: 600;
-    letter-spacing: 0.02em;
+    font-weight: 400;
+    letter-spacing: 0.04em;
   }
 
   .post-link {
@@ -363,8 +377,9 @@ a:hover {
   background-color: $mc-green;
   box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.35);
   color: #ffffff;
+  font-family: $mc-font;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 400;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
 }
 
@@ -420,7 +435,9 @@ a:hover {
 
 .member-role {
   border-radius: 20px;
-  padding: 2px 12px;
+  padding: 3px 13px;
+  font-family: $mc-font;
+  font-weight: 400;
   font-size: 13px;
 }
 
@@ -476,5 +493,6 @@ blockquote {
 }
 
 .footer-heading {
+  font-family: $mc-font;
   font-size: 18px;
 }
