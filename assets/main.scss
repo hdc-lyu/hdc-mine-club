@@ -143,6 +143,10 @@ a:hover {
     right: 0;
     bottom: -5px;
     height: 5px;
+    // 疑似要素は既定で子要素より手前に描画されるため、
+    // スマートフォンで開いたメニューに草のバーが重なってしまいます。
+    // メニュー（z-index: 2）より後ろに置いて回避します。
+    z-index: 1;
     background: repeating-linear-gradient(
       90deg,
       $mc-green 0 8px,
@@ -186,11 +190,13 @@ a:hover {
 
   // スマートフォンではメニューが白い箱で開くので文字色を戻します
   @include media-query($on-palm) {
-    background-color: rgba(255, 255, 255, 0.92);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
+    // 草のバーより手前に出します
+    z-index: 2;
+    // 背後の見出しが透けて読みにくくなるため、メニューは不透明にしています
+    background-color: #ffffff;
     border-color: $mc-green;
     border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
 
     .page-link,
     .page-link:visited {
