@@ -1,0 +1,35 @@
+---
+layout: default
+---
+
+<article class="member-profile">
+  <h1 class="page-heading">{{ page.title }}</h1>
+
+  <dl class="member-meta">
+    {%- if page.joined %}
+    <dt>入社</dt>
+    <dd>{{ page.joined }}</dd>
+    {%- endif %}
+    {%- if page.department %}
+    <dt>部署</dt>
+    <dd>{{ page.department }}</dd>
+    {%- endif %}
+    {%- if page.platform %}
+    <dt>プラットフォーム</dt>
+    <dd>{{ page.platform }}</dd>
+    {%- endif %}
+  </dl>
+
+  <div class="post-content">
+    {%- assign body = content | strip -%}
+    {%- if body != "" -%}
+      {{ content }}
+    {%- else -%}
+      <p class="member-empty">自己紹介はまだ書かれていません。</p>
+    {%- endif -%}
+  </div>
+
+  <p class="button-row">
+    <a class="mc-button" href="{{ "/members/" | relative_url }}">部員一覧へ戻る</a>
+  </p>
+</article>
