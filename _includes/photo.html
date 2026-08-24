@@ -1,0 +1,20 @@
+{%- comment -%}
+  活動記録に写真を1枚載せます。
+
+  使い方:
+    {% include photo.html src="2026-08-25-event/hall.jpg" caption="完成した会場" %}
+
+    src     : assets/images/posts/ から先のパス（必須）
+    caption : 写真の説明（任意。写真の下に小さく表示されます）
+    alt     : 読み上げ・画像が表示できないときの説明（省略時は caption を使います）
+
+  横に並べたいときは <div class="photo-grid"> ... </div> で囲みます。
+{%- endcomment -%}
+<figure class="photo">
+  <img src="{{ '/assets/images/posts/' | append: include.src | relative_url }}"
+       alt="{{ include.alt | default: include.caption | default: '' | escape }}"
+       loading="lazy" decoding="async">
+  {%- if include.caption %}
+  <figcaption>{{ include.caption }}</figcaption>
+  {%- endif %}
+</figure>

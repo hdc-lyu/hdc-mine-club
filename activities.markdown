@@ -11,6 +11,12 @@ permalink: /activities/
 <ul class="post-list activity-list">
 {%- for post in site.posts -%}
   <li>
+    {%- if post.thumbnail %}
+    <a class="post-thumbnail" href="{{ post.url | relative_url }}">
+      <img src="{{ '/assets/images/posts/' | append: post.thumbnail | relative_url }}"
+           alt="{{ post.title | escape }}" loading="lazy" decoding="async">
+    </a>
+    {%- endif %}
     <span class="post-meta">{{ post.date | date: date_format }}</span>
     <h2>
       <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>

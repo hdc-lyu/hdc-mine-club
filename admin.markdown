@@ -31,6 +31,73 @@ categories: 建築
 
 本文はMarkdownで書きます。1つ目の段落が一覧ページの抜粋になります。
 
+## 活動記録に写真を載せる
+
+### 1. 画像を置く
+
+`assets/images/posts/` の下に、**記事ごとのフォルダ**を作って入れます。
+フォルダ名・ファイル名は半角英数字とハイフンにしてください。
+
+```
+assets/images/posts/2026-08-25-event/entrance.jpg
+                                     /work-1.jpg
+                                     /work-2.jpg
+```
+
+### 2. 記事に書く
+
+写真を1枚、大きく載せる場合です。`src` は `assets/images/posts/` から先の部分だけ書きます。
+
+```liquid
+{% raw %}{% include photo.html src="2026-08-25-event/entrance.jpg" caption="完成したエントランス" %}{% endraw %}
+```
+
+`caption`（説明文）は省略できます。写真は本文と同じ幅に広がり、
+縦長の写真は高さが頭打ちになるので、画面を占有しません。
+
+こまかい写真を横に並べる場合は `photo-grid` で囲みます。
+画面が狭いときは自動で縦積みになります。
+
+```liquid
+<div class="photo-grid">
+{% raw %}{% include photo.html src="2026-08-25-event/work-1.jpg" caption="資材の準備" %}
+{% include photo.html src="2026-08-25-event/work-2.jpg" caption="足場を組んだところ" %}{% endraw %}
+</div>
+```
+
+### 3. 活動一覧にサムネイルを出す（任意）
+
+front matter に `thumbnail` を書くと、活動一覧とトップページの看板に
+写真が貼られます。書かなければ今までどおり文字だけの看板になります。
+
+```yaml
+---
+layout: post
+title:  "夏のイベントを開催しました"
+date:   2026-08-25 18:00:00 +0900
+categories: イベント
+thumbnail: 2026-08-25-event/entrance.jpg
+---
+```
+
+### 文章とのバランスのコツ
+
+- **段落と段落の間に写真を置く**と流れが切れません。見出しの直後より、
+  ひと段落説明してから見せるほうが読みやすくなります
+- **1枚だけ大きく**見せたいもの以外は、2〜3枚を横に並べたほうが締まります
+- 説明文（caption）を付けると、写真と本文の間にワンクッション入って読みやすくなります
+- 1記事に大きい写真を何枚も並べるより、**代表を1枚＋並べて2〜3枚**が目安です
+
+### 画像のサイズ
+
+そのままだとスマートフォンの通信量を圧迫するので、**長辺1600px程度・1枚500KB以下**に
+縮めてから置いてください。Macなら次のコマンドで縮小できます（元ファイルが上書きされるので
+コピーしてから実行してください）。
+
+```bash
+sips -Z 1600 assets/images/posts/2026-08-25-event/*.jpg
+```
+
 ## 部員を追加・変更する
 
 部員1人につきファイルを1つ、`_members/` に作ります。
@@ -124,6 +191,8 @@ body { font-family: $mc-font; }
 |---|---|
 | `_config.yml` | サイト名・説明・ナビの順番・記事URLの形式 |
 | `_members/` | 部員1人につき1ファイル。自己紹介ページを兼ねる |
+| `assets/images/posts/` | 活動記録に載せる写真 |
+| `_includes/photo.html` | 写真を1枚表示する部品 |
 | `_posts/` | 活動記録 |
 | `_layouts/home.html` | トップページ（最近の活動3件を表示） |
 | `_layouts/member.html` | 部員の自己紹介ページの体裁 |
