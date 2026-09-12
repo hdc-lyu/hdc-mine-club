@@ -5,7 +5,7 @@ permalink: /members/
 ---
 
 現在の部員は {{ site.members | size }} 名です。
-入部希望・情報の修正は部長までご連絡ください。
+参加を希望される方・掲載内容の修正は、部員までご連絡ください。
 
 {% assign members = site.members | sort: "joined" %}
 

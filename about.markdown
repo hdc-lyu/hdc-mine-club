@@ -15,7 +15,7 @@ HDCマイクラ部は、Minecraft を通じて部署をまたいで交流する�
 ## 参加について
 
 社員であればどなたでも参加できます。Minecraft の経験は問いません。
-参加を希望される方は部長までご連絡ください。
+参加を希望される方は、部員の誰かにお気軽にご連絡ください。
 
 このサイトは [Jekyll](https://jekyllrb.com/) で作られており、
 ソースは [GitHub](https://github.com/hdc-lyu/hdc-mine-club) で管理しています。
