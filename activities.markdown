@@ -24,7 +24,7 @@ permalink: /activities/
     {%- if post.categories.size > 0 -%}
     <p class="activity-tags">
       {%- for category in post.categories -%}
-      <span class="activity-tag">{{ category }}</span>
+      <span class="activity-tag">{% include item-icon.html name=category %}{{ category }}</span>
       {%- endfor -%}
     </p>
     {%- endif -%}

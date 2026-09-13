@@ -3,6 +3,7 @@ layout: post
 title:  "エンドの入口を見つけました"
 date:   2026-08-16 18:00:00 +0900
 categories: 探検
+advancement: エンドの入口を見つけた
 thumbnail: 2026-08-16-end-portal/portal-room.jpg
 ---
 

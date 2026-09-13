@@ -58,6 +58,9 @@ $content-width:    880px;
 // リポジトリに同梱したドットフォントの定義（_sass/dotgothic16.scss）
 @import "dotgothic16";
 
+// フッターの地層テクスチャ（_sass/strata-textures.scss）
+@import "strata-textures";
+
 // ===== ベース（Apple風のタイポグラフィと余白） =====
 body {
   -webkit-font-smoothing: antialiased;
@@ -454,7 +457,9 @@ a:hover {
 }
 
 .activity-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   padding: 1px 11px;
   margin-right: 8px;
   border: 2px solid $mc-green-dark;
@@ -466,6 +471,88 @@ a:hover {
   font-size: $fs-ui;
   font-weight: 400;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+// ===== アイテムアイコン（_includes/item-icon.html） =====
+// ドット絵なので、拡大しても滲まないようにしています
+.item-icon {
+  display: block;
+  flex: none;
+  image-rendering: pixelated;
+}
+
+// ===== 進捗の表示（記事の front matter の advancement） =====
+// ゲームで進捗を解除したときに右上に出る通知を模しています。
+.advancement {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 $spacing-unit;
+  padding: 10px 20px 10px 10px;
+  border: 2px solid #000000;
+  border-radius: 4px;
+  background-color: #212121;
+  box-shadow:
+    inset 0 0 0 2px #555555,
+    0 10px 24px rgba(0, 0, 0, 0.18);
+  font-family: $mc-font;
+  line-height: 1.5;
+  animation: advancement-in 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+// アイコンはインベントリのスロット風の枠に入れます
+.advancement__slot {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  background-color: #8b8b8b;
+  box-shadow:
+    inset 2px 2px 0 #373737,
+    inset -2px -2px 0 #ffffff;
+
+  // 16pxのドット絵をちょうど2倍で表示
+  .item-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.advancement__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.advancement__title {
+  color: #ffff55;
+  font-size: $fs-ui;
+}
+
+.advancement__name {
+  color: #ffffff;
+  font-size: $fs-ui;
+}
+
+@keyframes advancement-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// 動きを減らす設定の人にはアニメーションを出しません
+@media (prefers-reduced-motion: reduce) {
+  .advancement {
+    animation: none;
+  }
 }
 
 // ===== 記事の写真 =====
@@ -675,12 +762,65 @@ blockquote {
 }
 
 // ===== フッター =====
+// ===== フッター＝地層の断面 =====
+// ヘッダーが地表（草）なので、ページの一番下は地下の断面にしています。
+// 上から 土 → 石 → 深層岩（文字を載せる層） → 岩盤 の順です。
+$strata-block: 32px; // 16pxのドット絵を2倍で並べる
+
 .site-footer {
-  border-top: 1px solid #e3e3e6;
-  background-color: #f5f5f7;
+  position: relative;
+  // 上に土と石の2段、下に岩盤の1段ぶんの余白をとります
+  padding: ($strata-block * 2 + $spacing-unit) 0 ($strata-block + $spacing-unit);
+  border-top: none;
+  background: $tex-deepslate 0 0 / #{$strata-block} #{$strata-block} repeat;
+  color: #e0e0e6;
+  image-rendering: pixelated;
+
+  // 土と石
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    image-rendering: pixelated;
+  }
+
+  &::before {
+    top: 0;
+    height: $strata-block * 2;
+    background:
+      $tex-dirt 0 0 / #{$strata-block} #{$strata-block} repeat-x,
+      $tex-stone 0 $strata-block / #{$strata-block} #{$strata-block} repeat-x;
+    // 層の境目に影を落として段差を出します
+    box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  // 岩盤
+  &::after {
+    bottom: 0;
+    height: $strata-block;
+    background: $tex-bedrock 0 0 / #{$strata-block} #{$strata-block} repeat-x;
+    box-shadow: inset 0 3px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  // 模様の上でも読みやすいよう、文字に薄い影を付けます
+  .footer-col-wrapper,
+  .contact-list,
+  .footer-col p {
+    color: #e0e0e6;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  a,
+  a:visited {
+    color: #a9cdff;
+  }
 }
 
 .footer-heading {
   font-family: $mc-font;
   font-size: $fs-h4;
+  color: #ffffff;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
 }

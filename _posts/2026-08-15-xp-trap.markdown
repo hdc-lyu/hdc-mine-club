@@ -3,6 +3,7 @@ layout: post
 title:  "経験値トラップを作成しました"
 date:   2026-08-15 18:00:00 +0900
 categories: 探検
+advancement: 経験値トラップを完成させた
 thumbnail: 2026-08-15-xp-trap/overview.jpg
 ---
 
