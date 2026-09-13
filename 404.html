@@ -1,25 +1,23 @@
 ---
 permalink: /404.html
-layout: page
+layout: default
+title: ページが見つかりません
+noindex: true
 ---
 
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
-
-<div class="container">
-  <h1>404</h1>
-
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
-</div>
+{%- comment -%}
+  存在しないページを開いたときの画面です。
+  ゲームで倒れたときの画面を模して、リスポーン（トップへ戻る）ボタンを置いています。
+{%- endcomment -%}
+<section class="death-screen">
+  <h1 class="death-screen__title">死んでしまった！</h1>
+  <p class="death-screen__message">
+    お探しのページは見つかりませんでした。<br>
+    URLが間違っているか、ページが移動・削除された可能性があります。
+  </p>
+  <p class="death-screen__score">エラーコード: <span>404</span></p>
+  <div class="death-screen__buttons">
+    <a class="mc-button" href="{{ "/" | relative_url }}">リスポーン</a>
+    <a class="mc-button" href="{{ "/activities/" | relative_url }}">活動一覧へ</a>
+  </div>
+</section>

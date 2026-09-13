@@ -13,6 +13,14 @@ description: >- # baseurl: までの改行は無視されます
 baseurl: "/hdc-mine-club" # サイトのサブパス（例: /blog）
 url: "https://hdc-lyu.github.io" # ホスト名とプロトコル
 
+# 日本語のサイトであることをブラウザ・読み上げ・SNSに伝えます
+lang: ja
+locale: ja_JP
+
+# LINE や Teams などでリンクを共有したときのプレビュー画像を大きく表示します
+twitter:
+  card: summary_large_image
+
 # 部員一覧。_members/ の1ファイルが1人分で、そのまま自己紹介ページになります。
 # URLは /members/ファイル名/ です。
 collections:
@@ -26,6 +34,12 @@ defaults:
       type: members
     values:
       layout: member
+  # 共有プレビュー用の既定の画像。写真つきの記事は thumbnail の写真が使われます
+  # （_plugins/thumbnail_image.rb）
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/og-default.png
 
 # 活動記録のURL（カテゴリ名がURLに入らないようにしています）
 permalink: /activities/:year/:month/:day/:title/

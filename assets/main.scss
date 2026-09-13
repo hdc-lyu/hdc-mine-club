@@ -260,6 +260,110 @@ a:hover {
   }
 }
 
+// ===== トップの「次回の活動」（_data/next_event.yml） =====
+.next-event {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0 0 $spacing-unit * 1.5;
+  padding: 20px 24px;
+  border-radius: 18px;
+  background-color: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+  // 左端に草の緑の帯
+  border-left: 6px solid $mc-green;
+}
+
+.next-event__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 60px;
+  height: 60px;
+  background-color: #8b8b8b;
+  box-shadow:
+    inset 2px 2px 0 #373737,
+    inset -2px -2px 0 #ffffff;
+
+  .item-icon {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.next-event__body p {
+  margin: 0;
+}
+
+.next-event__label {
+  margin: 0 0 2px;
+  font-size: $fs-ui;
+  color: $mc-green-dark;
+}
+
+.next-event__date {
+  font-family: $mc-font;
+  font-size: $fs-h3;
+  line-height: 1.4;
+}
+
+.next-event__title {
+  font-family: $mc-font;
+  font-size: $fs-h4;
+}
+
+.next-event__note {
+  margin-top: 4px;
+  font-size: $fs-small;
+  color: $grey-color;
+}
+
+// ===== 404ページ（死んでしまった！） =====
+.death-screen {
+  margin: 0 0 $spacing-unit;
+  padding: $spacing-unit * 2 $spacing-unit;
+  border-radius: 18px;
+  // ゲームで倒れたときの赤い画面
+  background: linear-gradient(180deg, rgba(160, 20, 20, 0.92), rgba(90, 10, 10, 0.95));
+  color: #ffffff;
+  text-align: center;
+  font-family: $mc-font;
+}
+
+.death-screen__title {
+  margin: 0 0 $spacing-unit;
+  color: #ffffff;
+  font-size: $fs-page-title;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.45);
+}
+
+.death-screen__message {
+  margin-bottom: $spacing-unit * 0.75;
+  font-family: $base-font-family;
+  line-height: 1.8;
+}
+
+.death-screen__score {
+  margin-bottom: $spacing-unit;
+
+  span {
+    color: #ffff55;
+  }
+}
+
+.death-screen__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  .mc-button {
+    min-width: 260px;
+  }
+}
+
 // ===== マイクラ風ボタン =====
 // ゲーム内GUIのボタンに寄せて、角を立てて上下に立体的な縁を付けています。
 .button-row {
@@ -654,6 +758,8 @@ a:hover {
 }
 
 .member-name {
+  // 全体の見出しに付けている上余白が、カードの中では空きすぎるので消します
+  margin-top: 0;
   display: flex;
   align-items: center;
   flex-wrap: wrap;

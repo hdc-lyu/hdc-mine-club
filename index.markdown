@@ -3,9 +3,9 @@ layout: home
 title: HDCマイクラ部へようこそ
 ---
 
-サイト始まりました。
+HDCマイクラ部は、Minecraft を通じて部署をまたいで交流する社内の部活です。
 
-このサイトでは、HDCマイクラ部の活動を記録していきます。
+建築や探検、ボス討伐など、みんなでの冒険をこのサイトに記録しています。
 
 <p class="button-row">
   <a class="mc-button" href="{{ "/members/" | relative_url }}">部員一覧</a>

@@ -26,9 +26,12 @@ permalink: /members/
       <dd>{{ member.department }}</dd>
       {%- endif %}
     </dl>
+    {%- assign intro = member.content | strip %}
+    {%- if intro != "" %}
     <p class="member-link">
       <a class="mc-button mc-button--small" href="{{ member.url | relative_url }}">自己紹介</a>
     </p>
+    {%- endif %}
   </li>
 {%- endfor -%}
 </ul>

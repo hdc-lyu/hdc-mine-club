@@ -11,6 +11,41 @@ layout: default
     {{ content }}
   </div>
 
+  {%- comment -%}
+    次回の活動（_data/next_event.yml）。日付を過ぎたら表示しません。
+    サイトは更新したときにしか作り直されないので、閲覧時にもブラウザ側で日付を確認しています。
+  {%- endcomment -%}
+  {%- assign next = site.data.next_event %}
+  {%- if next and next.date %}
+  {%- assign next_day = next.date | date: "%Y%m%d" | plus: 0 %}
+  {%- assign build_day = site.time | date: "%Y%m%d" | plus: 0 %}
+  {%- if next_day >= build_day %}
+  {%- assign weekdays = "日,月,火,水,木,金,土" | split: "," %}
+  {%- assign wday = next.date | date: "%w" | plus: 0 %}
+  <section class="next-event" data-date="{{ next.date | date: '%Y-%m-%d' }}" aria-labelledby="next-event-label">
+    <span class="next-event__icon">{% include item-icon.html name="予定" %}</span>
+    <div class="next-event__body">
+      <h2 class="next-event__label" id="next-event-label">次回の活動</h2>
+      <p class="next-event__date">
+        <time datetime="{{ next.date | date: '%Y-%m-%d' }}">{{ next.date | date: "%-m月%-d日" }}（{{ weekdays[wday] }}）</time>
+      </p>
+      <p class="next-event__title">{{ next.title | escape }}</p>
+      {%- if next.note %}
+      <p class="next-event__note">{{ next.note | escape }}</p>
+      {%- endif %}
+    </div>
+  </section>
+  <script>
+    (function () {
+      var box = document.querySelector(".next-event");
+      if (!box) return;
+      var end = new Date(box.getAttribute("data-date") + "T23:59:59+09:00");
+      if (Date.now() > end.getTime()) box.hidden = true;
+    })();
+  </script>
+  {%- endif %}
+  {%- endif %}
+
   {%- if site.posts.size > 0 -%}
     <h2 class="post-list-heading">最近の活動</h2>
     <ul class="post-list">
